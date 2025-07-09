@@ -1,0 +1,54 @@
+import { NavLink, useLocation } from "react-router-dom";
+import { CiLogout } from "react-icons/ci";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { signOut } from "firebase/auth";
+import { auth } from "../Auth/firebase-config";
+import { useGetLocalInfo } from "../Hooks/useGetLocalInfo";
+
+export const Navbar = () => {
+  const { isAuth } = useGetLocalInfo()
+  useEffect(() => {
+    gsap.fromTo(logoRef.current, 
+      {y:-50, opacity:0},
+      {y:0, opacity:1, duration:1.2}
+    )
+  }, [])
+  const location = useLocation()
+  const homePage = location.pathname === "/"
+  const newThoughtPage = location.pathname === "/new-thought"
+  const profilePage = location.pathname === "/profile"
+  const feedPage = location.pathname === "/feed"
+  const logoRef = useRef()
+  const handleLogOut = async () => {
+    await signOut(auth)
+    localStorage.clear()
+    alert("Sign Out Successful")
+  }
+  return (
+    <div className="flex justify-around items-center py-3.5 bg-[#111827] rounded-b-full rounded-t-full shadow-gray-400 ">
+      <div>
+        <NavLink to={"/"} className="text-style text-4xl" ref={logoRef}>Thryve</NavLink>
+      </div>
+      <div className="flex items-center space-x-6 text-style">
+        <NavLink to="/feed" className={`${feedPage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"}`}>
+          Feed
+        </NavLink>
+        <NavLink to="/new-thought" className={`${newThoughtPage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"}`}>
+          New Thought
+        </NavLink>
+        <NavLink to="/profile" className={`${profilePage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"} ${isAuth ? "inline-block" : "hidden"}`}>
+          Profile
+        </NavLink>
+        <NavLink to="/login" className={`text-xl ${isAuth ? "hidden" : "inline-block"}`}>
+          Login
+        </NavLink>
+        <div>
+          <button onClick={handleLogOut} className={`${isAuth ? "inline" : "hidden"} border-t-2 border-b-[1px] border-x-[0.5px] px-5 rounded-full `}>
+            <NavLink to={"/login"} className="flex justify-center items-center py-1 gap-x-3 hover:scale-110"><CiLogout className="text-white "/> Log Out</NavLink>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

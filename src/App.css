@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inder&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libertinus+Mono&display=swap');
+
+body{
+  background-color: 	#0d0d0d;
+  color: white;
+}
+
+.text-style{
+  font-family: "Inder", sans-serif;
+  font-weight: 400;
+}
+
+.hero-text-style{
+  font-family: "Libertinus Mono", monospace;
+  font-weight: 400;
+}
