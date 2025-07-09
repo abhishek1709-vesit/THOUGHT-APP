@@ -16,10 +16,10 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black opacity-70 z-50 flex justify-center items-center ">
+    <div className="fixed inset-0 bg-black opacity-80 z-50 flex justify-center items-center ">
       <div className="flex flex-col border-2 border-slate-700 bg-slate-800 bg-gradient-to-b from-black via-gray-800 to-black w-[90vw] md:w-[50vw] h-[80vh] p-4 rounded-2xl relative overflow inset-y-auto">
         <div>
-          <p>Comments :- </p>
+          <p className="font-bold">Comments :- </p>
           <button
             onClick={onClose}
             className="text-style absolute  top-4 right-4 text-xl font-bold text-white cursor-pointer hover:text-gray-500"
@@ -28,7 +28,7 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
           </button>
         </div>
 
-        <ul className="overflow-y-auto mb-20">
+        <ul className="overflow-y-auto mb-20 font-medium">
           {commentArray.map((curComment, index) => {
             // console.log(curComment);
             const { name, photo, text, createdAt } = curComment;

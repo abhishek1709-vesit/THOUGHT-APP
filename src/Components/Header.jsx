@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -8,6 +8,7 @@ import { useGetLocalInfo } from "../Hooks/useGetLocalInfo";
 
 export const Navbar = () => {
   const { isAuth } = useGetLocalInfo()
+  const navigate = useNavigate()
   useEffect(() => {
     gsap.fromTo(logoRef.current, 
       {y:-50, opacity:0},
@@ -22,6 +23,7 @@ export const Navbar = () => {
   const logoRef = useRef()
   const handleLogOut = async () => {
     await signOut(auth)
+    navigate("/")
     localStorage.clear()
     alert("Sign Out Successful")
   }
@@ -34,12 +36,14 @@ export const Navbar = () => {
         <NavLink to="/feed" className={`${feedPage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"}`}>
           Feed
         </NavLink>
-        <NavLink to="/new-thought" className={`${newThoughtPage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"}`}>
+        {isAuth && <NavLink to="/new-thought" className={`${newThoughtPage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"}`}>
           New Thought
-        </NavLink>
-        <NavLink to="/profile" className={`${profilePage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"} ${isAuth ? "inline-block" : "hidden"}`}>
+        </NavLink>}
+        
+        {isAuth && <NavLink to="/profile" className={`${profilePage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block " : "text-white text-style text-xl hidden md:inline-block"}`}>
           Profile
-        </NavLink>
+        </NavLink>}
+
         <NavLink to="/login" className={`text-xl ${isAuth ? "hidden" : "inline-block"}`}>
           Login
         </NavLink>
