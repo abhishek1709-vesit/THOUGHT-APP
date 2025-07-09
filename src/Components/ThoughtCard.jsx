@@ -27,7 +27,8 @@ export const ThoughtCard = ({createdAt,name,photo,thought,title, id, likes, comm
             />
           </div>
           <div>
-            <p>{name}</p>
+            <p>{name || "Anonymous"}</p>
+            
             <p>
               {createdAt?.toDate().toLocaleString("en-US", {
                 dateStyle: "medium",
