@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 export const useSignUp = () => {
     const navigate = useNavigate()
-  const signUp = async (email, password) => {
+  const signUp = async (email, password, username) => {
     try {
       const results = await createUserWithEmailAndPassword(auth,email,password);
       console.log(results);
       const authUserInfo = {
-        name: results.user.displayName,
+        name: username,
         userId: results.user.uid,
         photo: results.user.photoURL,
         isAuth: true,
@@ -18,7 +18,7 @@ export const useSignUp = () => {
       console.log("Authenticated");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   };
 

@@ -7,11 +7,13 @@ import { useSignUp } from "../Hooks/useSignUp";
 export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUserName] = useState("")
+
   const navigate = useNavigate();
   const {signUp} = useSignUp()
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    signUp(email, password)
+    signUp(email, password, username)
   };
 
   const logInWithGoogle = async () => {
@@ -32,6 +34,9 @@ export const SignUp = () => {
       <form onSubmit={handleFormSubmit} className="shadow-lg shadow-slate-500 border-t-4 border-x-[1px] border-b-[1px] rounded-2xl border-slate-700 p-8 flex flex-col gap-2 items-center">
         <p className="text-style text-xl">Sign Up</p>
         <div className="mt-5">
+          <input type="text" value={username} onChange={(e) => setUserName(e.target.value)} placeholder="Username" className="border-2 rounded-2xl px-2 py-1 border-slate-700 mb-2" required/>
+        </div>
+        <div className="mb-2">
           <input
             type="text"
             value={email}

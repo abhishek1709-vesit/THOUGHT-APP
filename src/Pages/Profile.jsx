@@ -21,6 +21,10 @@ export const Profile = () => {
       console.log(error);
     }
   };
+
+  const handleEdit = async () => {
+    
+  }
   const { getUserThoughts, userThoughts } = useGetThoughts();
   const { name, photo, userId } = useGetLocalInfo();
   useEffect(() => {
@@ -62,7 +66,7 @@ export const Profile = () => {
                     Delete <MdDelete />
                   </button>
                   <button
-                    onClick={() => handleDelete(id)}
+                    onClick={() => handleEdit(id)}
                     className="flex items-center gap-2 px-3 py-1 rounded-xl border-slate-700 text-green-600 cursor-pointer border-2"
                   >
                     Edit <FaRegEdit />
