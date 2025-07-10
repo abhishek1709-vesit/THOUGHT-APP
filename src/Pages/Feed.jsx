@@ -8,14 +8,7 @@ import { useEffect } from "react";
 export const Feed = () => {
   const { thoughtArray } = useGetThoughts();
   const { isAuth } = useGetLocalInfo();
-  const navigate = useNavigate();
   // console.log(thoughtArray)
-
-  useEffect(() => {
-    if(!isAuth){
-      navigate("/login")
-    }
-  }, [isAuth])
     return (
       <div className="mt-5 bg-gradient-to-r from-black via-gray-900 to-black">
         <div>

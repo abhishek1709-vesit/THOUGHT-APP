@@ -36,14 +36,16 @@ export const Navbar = () => {
         <NavLink to="/feed" className={`${feedPage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"}`}>
           Feed
         </NavLink>
-        {isAuth && <NavLink to="/new-thought" className={`${newThoughtPage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"}`}>
+
+        <NavLink to="/new-thought" className={`${newThoughtPage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"}`}>
           New Thought
-        </NavLink>}
+        </NavLink>
         
         {isAuth && <NavLink to="/profile" className={`${profilePage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block " : "text-white text-style text-xl hidden md:inline-block"}`}>
           Profile
         </NavLink>}
 
+        <NavLink to="/signUp" className={`text-xl ${isAuth ? "hidden" : "inline-block"}`}>Sign Up </NavLink>
         <NavLink to="/login" className={`text-xl ${isAuth ? "hidden" : "inline-block"}`}>
           Login
         </NavLink>

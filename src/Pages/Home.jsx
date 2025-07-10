@@ -34,14 +34,14 @@ export const Home = () => {
             Because every idea deserves to be heard.
           </p>
           <p className="hero-text text-style text-[14px]">
-            Welcome to ThoughtShare — a space where students like you freely
+            Welcome to Thryve — a space where students like you freely
             express ideas, reflections, opinions, or just random thoughts.
             Whether it's deep, funny, casual, or motivational — your words
             matter. Join the conversation and see what others are thinking too.
           </p>
           <button className="hero-text border-2 px-4 py-2 mb-10 md:mb-0 rounded-full border-slate-700">
             <NavLink to="/feed" className="flex gap-2 items-center">
-              Explore Feed <FaLongArrowAltRight />
+              Explore Feed <FaLongArrowAltRight />  
             </NavLink>
           </button>
         </div>
@@ -53,7 +53,7 @@ export const Home = () => {
         “A thought shared is a thought remembered.” — Anonymous
       </div>
       <Stats></Stats>
-      <div className="mt-16 text-center text-gray-400 text-sm italic"> Built by Abhishek and friends at XYZ College 🏫 to help students think, write, and grow together. </div>
+      <div className="my-16 text-center text-gray-400 text-sm italic"> Built by Abhishek at VESIT 🏫 to help students think, write, and grow together. </div>
     </div>
   );
 };
