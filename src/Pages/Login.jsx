@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useLogIn } from "../Hooks/useAddLogIn";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../Auth/firebase-config";
 
 export const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("")
+
     const navigate = useNavigate()
   const logInWithGoogle = async () => {
       const results = await signInWithPopup(auth, provider);
@@ -23,34 +25,39 @@ export const LogIn = () => {
     const {hooklogIn} = useLogIn()
     const handleFormSubmit = (e) => {
         e.preventDefault();
-    hooklogIn(email, password)
+        hooklogIn(username, email, password)
     }
-  return <div className="flex flex-col items-center my-10">
-      <form onSubmit={handleFormSubmit} className="shadow-lg shadow-slate-500 border-t-4 border-x-[1px] border-b-[1px] rounded-2xl border-slate-700 p-8 flex flex-col gap-3 items-center">
-        <p className="text-style text-xl">Log In</p>
-        
-        <div className="mb-2">
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            className="border-2 rounded-2xl px-2 py-1 border-slate-700"
-            required
-          />
+  return <div class="flex items-center min-h-screen">
+    <div class="container mx-auto">
+        <div class="max-w-md mx-auto my-10">
+            <div class="text-center">
+                <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Log in</h1>
+                <p class="text-gray-500 dark:text-gray-400">Log in to access your account</p>
+            </div>
+            <div class="m-7">
+                <form onSubmit={handleFormSubmit}>
+                    <div class="mb-6">
+                        <label for="username" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email Address</label>
+                        <input type="text" name="username" id="username" placeholder="Username" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email Address</label>
+                        <input type="email" name="email" id="email" placeholder="your@name.com" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <label for="password" class="text-sm text-gray-600 dark:text-gray-400">Password</label>
+                            
+                        </div>
+                        <input type="password" name="password" id="password" placeholder="Your Password" class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <div class="mb-6">
+                        <button type="submit" class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Log in</button>
+                    </div>
+                    <p class="text-sm text-center text-gray-400">Don't have an account yet? <NavLink to="/signUp" class="text-indigo-400 focus:outline-none focus:underline focus:text-indigo-500 dark:focus:border-indigo-800">Sign up</NavLink>.</p>
+                </form>
+            </div>
         </div>
-        <div>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className="border-2 rounded-2xl px-2 py-1 border-slate-700"
-            required
-          />
-        </div>
-        <button type="submit" className="border-t-2 border-x-[1px] border-b-[1px] px-4 py-1 flex mt-3 rounded-3xl border-slate-700">Log In</button>
-
-      </form>
     </div>
+</div>
 };

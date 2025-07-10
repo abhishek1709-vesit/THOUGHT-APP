@@ -11,9 +11,8 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
   const [comment, setComment] = useState("");
   const { addComment } = useAddComment();
   const { name, photo } = useGetLocalInfo();
-  const {deleteComment} = useDeleteComment()
-  const {addCommentLike} = useLikeComment()
-
+  const { deleteComment } = useDeleteComment();
+  const { addCommentLike } = useLikeComment();
 
   const handleAddComment = (e, id) => {
     e.preventDefault();
@@ -23,14 +22,14 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
   };
 
   const handleDeleteClick = (commentId) => {
-    deleteComment(id, commentId,commentArray)
-  }
+    deleteComment(id, commentId, commentArray);
+  };
 
   const handleLikeComment = (commentId) => {
     // console.log("thoughtId", id)
     // console.log("Comment Id", commentId)
-    addCommentLike(id, commentId)
-  }
+    addCommentLike(id, commentId);
+  };
 
   return (
     <div className="fixed inset-0 bg-black opacity-80 z-50 flex justify-center items-center ">
@@ -45,53 +44,72 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
           </button>
         </div>
 
-        <ul className="overflow-y-auto mb-20 font-medium" >
+        <ul className="overflow-y-auto mb-20 font-medium">
           {commentArray.map((curComment, index) => {
             console.log(curComment);
-            const { name: commenterName, photo, text, createdAt, id:commentId, commentLikes } = curComment;
-            const userComment = name === commenterName
+            const {
+              name: commenterName,
+              photo,
+              text,
+              createdAt,
+              id: commentId,
+              commentLikes,
+            } = curComment;
+            const userComment = name === commenterName;
             return (
-              
-                <li className="mt-3 flex flex-col mb-5" key={index} >
-                  <div className="flex gap-2">
-                    <div className=" w-6 h-5">
-                      <img src={photo} alt="" className="rounded-full" />
-                    </div>
-                    <div>
-                      <p className="text-base">{commenterName}</p>
-                    </div>
+              <li className="mt-3 flex flex-col mb-5" key={index}>
+                <div className="flex gap-2 mb-2 ">
+                  <div className="w-9 h-2 rounded-full">
+                    <img
+                      src={photo || defaultImg}
+                      alt=""
+                      className="rounded-full border-2"
+                    />
                   </div>
-                  <div className="mt-1">
-                    <p>{text}</p>
+                  <div>
+                    <p className="text-base">{commenterName}</p>
                   </div>
-                  <div className="flex gap-3 items-center">
-
-                  {
-                    userComment && (<button onClick={() => handleDeleteClick(commentId)} className="cursor-pointer">
-                    <MdDelete/>
-                  </button>)
-                  }
-                  <button onClick = {() => handleLikeComment(commentId)} className="flex items-center gap-1 cursor-pointer"><AiFillLike />{commentLikes.length}</button>
-                  </div>
-                  
-                </li>
+                </div>
+                <div className="mt-2 break-words">
+                  <p>{text}</p>
+                </div>
+                <div className="flex gap-3 items-center">
+                  {userComment && (
+                    <button
+                      onClick={() => handleDeleteClick(commentId)}
+                      className="cursor-pointer"
+                    >
+                      <MdDelete />
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleLikeComment(commentId)}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
+                    <AiFillLike />
+                    {commentLikes.length}
+                  </button>
+                </div>
+              </li>
             );
           })}
         </ul>
         <form
           onSubmit={(e) => handleAddComment(e, id)}
-          className="absolute bottom-5 w-full p-4"
+          className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-[90%] px-4"
         >
-          <input
-            type="text"
-            placeholder="Add a comment"
-            className="bg-white text-black w-[90%]"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-          <button type="submit" className="absolute right-25 text-black">
-            Post
-          </button>
+          <div className="flex items-center bg-white rounded-2xl px-3">
+            <input
+              type="text"
+              placeholder="Add a comment"
+              className="flex-1 text-black py-2 bg-transparent outline-none"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button type="submit" className=" ml-2 bg-black p-1 rounded-2xl">
+              Post
+            </button>
+          </div>
         </form>
       </div>
     </div>

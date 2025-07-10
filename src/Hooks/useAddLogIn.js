@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 export const useLogIn = () => {
     const navigate = useNavigate()
-  const hooklogIn = async (email, password) => {
+  const hooklogIn = async (username, email, password) => {
     try {
       const results = await signInWithEmailAndPassword(auth,email,password);
       console.log(results);
       const authUserInfo = {
-        name: results.user.displayName,
+        name: username,
         userId: results.user.uid,
         photo: results.user.photoURL,
         isAuth: true,
@@ -18,7 +18,14 @@ export const useLogIn = () => {
       console.log("Authenticated");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      const errorCode = error.code
+      if (errorCode === 'auth/email-already-in-use') {
+        alert("This email is already registered. Try logging in.");
+      } else if (errorCode === 'auth/invalid-email') {
+        alert("Invalid email format.");
+      } else if (errorCode === 'auth/weak-password') {
+        alert("Password is too weak. Minimum 6 characters required.");
+      } 
     }
   };
 

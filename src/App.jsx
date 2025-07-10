@@ -33,20 +33,21 @@ const App = () => {
           path: "/profile",
           element: <Profile/>
         },
-        {
-          path: "/signUp",
-          element: <SignUp/>
-        },
+        
         {
           path: "/feed",
           element: <Feed/>
-        }
+        },
       ]
     },
     {
       path:"/login",
       element: <LogIn/>
-    }
+    },
+    {
+          path: "/signUp",
+          element: <SignUp/>
+        },
   ])
   return (
     <div>

@@ -18,7 +18,16 @@ export const useSignUp = () => {
       console.log("Authenticated");
       navigate("/");
     } catch (error) {
-      console.log(error)
+      const errorCode = error.code
+      if (errorCode === 'auth/email-already-in-use') {
+        alert("This email is already registered. Try logging in.");
+      } else if (errorCode === 'auth/invalid-email') {
+        alert("Invalid email format.");
+      } else if (errorCode === 'auth/weak-password') {
+        alert("Password is too weak. Minimum 6 characters required.");
+      } else {
+        alert("Error: " + errorMessage);
+      }
     }
   };
 

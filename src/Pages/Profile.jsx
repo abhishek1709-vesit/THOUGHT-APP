@@ -22,9 +22,7 @@ export const Profile = () => {
     }
   };
 
-  const handleEdit = async () => {
-    
-  }
+  
   const { getUserThoughts, userThoughts } = useGetThoughts();
   const { name, photo, userId } = useGetLocalInfo();
   useEffect(() => {
@@ -64,12 +62,6 @@ export const Profile = () => {
                     className="flex items-center gap-2 px-3 py-1 rounded-xl border-slate-700 text-red-600 cursor-pointer border-2"
                   >
                     Delete <MdDelete />
-                  </button>
-                  <button
-                    onClick={() => handleEdit(id)}
-                    className="flex items-center gap-2 px-3 py-1 rounded-xl border-slate-700 text-green-600 cursor-pointer border-2"
-                  >
-                    Edit <FaRegEdit />
                   </button>
                 </div>
               </div>
