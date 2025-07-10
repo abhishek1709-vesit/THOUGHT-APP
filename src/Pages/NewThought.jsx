@@ -14,6 +14,7 @@ export const NewThought = () => {
     e.preventDefault()
     addThought({title, thought})
     alert("Thought Added")
+    navigate("/feed")
   }
 
   useEffect(() => {
