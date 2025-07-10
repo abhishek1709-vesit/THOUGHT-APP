@@ -1,6 +1,7 @@
 import { doc, updateDoc } from "firebase/firestore"
 import { db } from "../Auth/firebase-config"
 import { useGetLocalInfo } from "./useGetLocalInfo"
+import {v4 as uuidv4} from "uuid"
 
 export const useAddComment = () => {
     let count = 0
@@ -15,7 +16,8 @@ export const useAddComment = () => {
             text: comment,
             name: name,
             photo: photo,
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            id: uuidv4()
         }
         const updatedComments = [...commentArray, newComment]
         count = count + updatedComments.length

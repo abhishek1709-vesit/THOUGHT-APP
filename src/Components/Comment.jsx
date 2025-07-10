@@ -2,11 +2,15 @@ import { useState } from "react";
 import defaultImg from "../images/default-img.png";
 import { useAddComment } from "../Hooks/useAddComment";
 import { useGetLocalInfo } from "../Hooks/useGetLocalInfo";
+import { MdDelete } from "react-icons/md";
+import { useDeleteComment } from "../Hooks/useDeleteComment";
+import { AiFillLike } from "react-icons/ai";
 export const Comment = ({ id, commentArray, commentOn, onClose }) => {
   if (!commentOn) return null;
   const [comment, setComment] = useState("");
   const { addComment } = useAddComment();
   const { name, photo } = useGetLocalInfo();
+  const {deleteComment} = useDeleteComment()
 
   const handleAddComment = (e, id) => {
     e.preventDefault();
@@ -14,6 +18,11 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
     setComment("");
     // console.log(commentArray);
   };
+
+  const handleDeleteClick = (commentId) => {
+    deleteComment(id, commentId,commentArray)
+  }
+
 
   return (
     <div className="fixed inset-0 bg-black opacity-80 z-50 flex justify-center items-center ">
@@ -28,23 +37,32 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
           </button>
         </div>
 
-        <ul className="overflow-y-auto mb-20 font-medium">
+        <ul className="overflow-y-auto mb-20 font-medium" >
           {commentArray.map((curComment, index) => {
             // console.log(curComment);
-            const { name, photo, text, createdAt } = curComment;
+            const { name: commenterName, photo, text, createdAt, id:commentId } = curComment;
+            const userComment = name === commenterName
             return (
-                <li className="mt-3 flex flex-col mb-5" key={index}>
+              
+                <li className="mt-3 flex flex-col mb-5" key={index} >
                   <div className="flex gap-2">
                     <div className=" w-6 h-5">
                       <img src={photo} alt="" className="rounded-full" />
                     </div>
                     <div>
-                      <p className="text-base">{name}</p>
+                      <p className="text-base">{commenterName}</p>
                     </div>
                   </div>
                   <div className="mt-1">
                     <p>{text}</p>
                   </div>
+                  {
+                    userComment && (<button onClick={() => handleDeleteClick(commentId)}>
+                    <MdDelete/>
+                  </button>)
+                  }
+                  <AiFillLike />
+                  
                 </li>
             );
           })}
