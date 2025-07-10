@@ -12,7 +12,7 @@ export const useGetThoughts = () =>  {
         let unsubscribe;
         try {
             setLoading(true)
-            const queryThoughts = query(thoughtCollectionRef, orderBy("createdAt"))
+            const queryThoughts = query(thoughtCollectionRef, orderBy("createdAt", "desc"))
             unsubscribe = onSnapshot(queryThoughts, (snapshots) => {
                 // console.log(snapshots)
                 let docs = []
@@ -35,7 +35,7 @@ export const useGetThoughts = () =>  {
         setLoading(true)
         let user_unsub;
         try {
-            const queryThoughts = query(thoughtCollectionRef, where("userId", "==", userId))
+            const queryThoughts = query(thoughtCollectionRef, where("userId", "==", userId), orderBy("createdAt", "desc"))
             user_unsub = onSnapshot(queryThoughts, (snapshots) => {
                 let user_docs = []
                 snapshots.forEach((doc) => {
