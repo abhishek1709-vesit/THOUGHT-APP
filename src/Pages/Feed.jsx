@@ -11,7 +11,7 @@ export const Feed = () => {
   // console.log(thoughtArray)
   if(!thoughtArray) return <p>Loading...</p>
     return (
-      <div className="my-10 bg-gradient-to-r from-black via-gray-900 to-black">
+      <div className="my-10 border-2 bg-gradient-to-r from-black via-gray-900 to-black">
         <div>
           <Stats />
         </div>
