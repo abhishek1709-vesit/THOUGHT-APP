@@ -12,12 +12,6 @@ export const Stats = () => {
       <div className="text-xl text-slate-400 flex flex-col items-center border-y-2 border-x-[0.5px]  rounded-full px-7 py-2 border-slate-500">
         Thoughts Shared <p className="text-blue-500"><CountUp end={thoughtArray.length}/></p>
       </div>
-      <div className="text-xl text-slate-400 flex flex-col items-center border-y-2 border-x-[0.5px]  rounded-full px-7 py-2 border-slate-500">
-        Active Users <p className="text-blue-500">✕</p>
-      </div>
-      <div className="text-xl text-slate-400 flex flex-col items-center border-y-2 border-x-[0.5px]  rounded-full px-7 py-2 border-slate-500">
-        Comments posted <p className="text-blue-500">✕</p>
-      </div>
     </div>
   );
 };
