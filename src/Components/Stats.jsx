@@ -8,8 +8,8 @@ export const Stats = () => {
   const {thoughtArray} = useGetThoughts()
   const {count} = useAddComment()
   return (
-    <div className="flex flex-wrap gap-y-5 gap-x-3 md:gap-x-0 justify-center md:flex-row md:justify-between mt-10">
-      <div className="text-xl text-slate-400 flex flex-col items-center border-y-2 border-x-[0.5px]  rounded-full px-7 py-2 border-slate-500">
+    <div className="flex justify-center">
+      <div className="text-xl text-slate-400 flex flex-col text-center items-center border-y-4 w-[40vw] min-w-[30vw] border-x-[0.5px] rounded-full px-7 py-2 border-slate-500">
         Thoughts Shared <p className="text-blue-500"><CountUp end={thoughtArray.length}/></p>
       </div>
     </div>

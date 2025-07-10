@@ -49,7 +49,7 @@ export const Home = () => {
           <img src={thoughtImg} alt="Thought" className="img"/>
         </div>
       </div>
-      <div className="thought mt-12 border-t border-[#333] text-xl pt-6 text-center text-gray-400 italic">
+      <div className="thought my-12 border-t border-[#333] text-xl pt-6 text-center text-gray-400 italic">
         “A thought shared is a thought remembered.” — Anonymous
       </div>
       <Stats></Stats>
