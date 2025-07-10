@@ -96,17 +96,17 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
         </ul>
         <form
           onSubmit={(e) => handleAddComment(e, id)}
-          className="absolute bottom-5 left-1/2 transform -translate-x-1/2 w-[90%] px-4"
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-[90%] md:px-4"
         >
           <div className="flex items-center bg-white rounded-2xl px-3">
             <input
               type="text"
               placeholder="Add a comment"
-              className="flex-1 text-black py-2 bg-transparent outline-none"
+              className="flex-1 flex-nowrap min-w-0 text-black md:py-2 bg-transparent outline-none"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
-            <button type="submit" className=" ml-2 bg-black p-1 rounded-2xl">
+            <button type="submit" className=" ml-2 bg-black p-1 rounded-2xl text-base md:text-xl font-bold px-2 my-1">
               Post
             </button>
           </div>
