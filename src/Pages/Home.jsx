@@ -25,7 +25,7 @@ export const Home = () => {
   },[])
   return (
     <div className="flex mx-10 flex-wrap md:flex-col">
-      <div className="mt-10 grid gap-x-10 grid-cols-1 md:grid-cols-2">
+      <div className="mt-20 grid gap-x-10 grid-cols-1 md:grid-cols-2">
         <div className="flex flex-col items-start justify-center gap-4">
           <p className="hero-text hero-text-style text-2xl md:text-3xl">
             Share Your Thoughts.Inspire Your Circle.
