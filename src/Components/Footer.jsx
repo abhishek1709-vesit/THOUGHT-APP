@@ -1,8 +1,16 @@
 import { FaWhatsapp } from "react-icons/fa";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
+import { useState } from "react";
 
 export const Footer = () => {
+  const [userName, setUserName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+
+  }
   return (
     <footer className="bg-[#111827] rounded-2xl border-gray-700 flex flex-wrap flex-col items-center">
       <div className="my-4 bg-[#111827] flex flex-wrap gap-10 justify-around items-center w-full h-full text-center py-6 border-t border-gray-700 mt-10">
@@ -13,17 +21,22 @@ export const Footer = () => {
         </div>
         <div className="flex flex-col">
           <p className="text-style text-xl">Contact Us Here :- </p>
-          <form className="border-t-2 border-x-[1px] border-b-[1px] p-3 rounded-2xl border-slate-700 shadow-lg shadow-slate-400 flex flex-col gap-4 items-center justify-center mt-2">
+          <form className="border-t-2 border-x-[1px] border-b-[1px] p-3 rounded-2xl border-slate-700 shadow-lg shadow-slate-400 flex flex-col gap-4 items-center justify-center mt-2" onSubmit={handleFormSubmit}>
             <input
               type="text"
               placeholder="Enter Name"
               required
               className="border-t-2 border-x-[1px] border-b-[1px] border-slate-600 px-2 py-1"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
             />
             <input
               type="email"
               placeholder="Enter Email"
               className="border-t-2 border-x-[1px] border-b-[1px] border-slate-600 px-2 py-1"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <textarea
               rows="5"
@@ -31,8 +44,11 @@ export const Footer = () => {
               type="email"
               placeholder="Enter Message"
               required
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               className="border-t-2 border-x-[1px] border-b-[1px] border-slate-600 px-2 py-1"
             />
+            <button type="submit" className="border-y-2 border-x-[1px] w-[50%] shadow-xs shadow-gray-400 border-slate-600 rounded-2xl py-1">Submit</button>
           </form>
         </div>
       </div>
