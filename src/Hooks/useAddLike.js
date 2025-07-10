@@ -4,7 +4,6 @@ import { db } from "../Auth/firebase-config";
 
 export const useAddLike = () => {
     const {userId} = useGetLocalInfo()
-    let likesArray;
     const addLike = async (id, currentLikes = []) => {
        const thoughtRef = doc(db, "thoughts", id)
        const alreadyLiked = currentLikes.includes(userId)

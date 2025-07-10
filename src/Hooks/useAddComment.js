@@ -5,7 +5,7 @@ import {v4 as uuidv4} from "uuid"
 
 export const useAddComment = () => {
     let count = 0
-    const {name, photo} = useGetLocalInfo()
+    const {name, photo, userId} = useGetLocalInfo()
     const addComment = async (comment, id, commentArray=[]) => {
         console.log(comment)
         console.log(id)
@@ -16,8 +16,10 @@ export const useAddComment = () => {
             text: comment,
             name: name,
             photo: photo,
+            userId,
             createdAt: new Date().toISOString(),
-            id: uuidv4()
+            id: uuidv4(),
+            commentLikes : []
         }
         const updatedComments = [...commentArray, newComment]
         count = count + updatedComments.length

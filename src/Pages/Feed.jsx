@@ -9,6 +9,7 @@ export const Feed = () => {
   const { thoughtArray } = useGetThoughts();
   const { isAuth } = useGetLocalInfo();
   // console.log(thoughtArray)
+  if(!thoughtArray) return <p>Loading...</p>
     return (
       <div className="mt-5 bg-gradient-to-r from-black via-gray-900 to-black">
         <div>

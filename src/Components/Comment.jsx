@@ -5,12 +5,15 @@ import { useGetLocalInfo } from "../Hooks/useGetLocalInfo";
 import { MdDelete } from "react-icons/md";
 import { useDeleteComment } from "../Hooks/useDeleteComment";
 import { AiFillLike } from "react-icons/ai";
+import { useLikeComment } from "../Hooks/useLikeComment";
 export const Comment = ({ id, commentArray, commentOn, onClose }) => {
   if (!commentOn) return null;
   const [comment, setComment] = useState("");
   const { addComment } = useAddComment();
   const { name, photo } = useGetLocalInfo();
   const {deleteComment} = useDeleteComment()
+  const {addCommentLike} = useLikeComment()
+
 
   const handleAddComment = (e, id) => {
     e.preventDefault();
@@ -23,6 +26,11 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
     deleteComment(id, commentId,commentArray)
   }
 
+  const handleLikeComment = (commentId) => {
+    // console.log("thoughtId", id)
+    // console.log("Comment Id", commentId)
+    addCommentLike(id, commentId)
+  }
 
   return (
     <div className="fixed inset-0 bg-black opacity-80 z-50 flex justify-center items-center ">
@@ -39,8 +47,8 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
 
         <ul className="overflow-y-auto mb-20 font-medium" >
           {commentArray.map((curComment, index) => {
-            // console.log(curComment);
-            const { name: commenterName, photo, text, createdAt, id:commentId } = curComment;
+            console.log(curComment);
+            const { name: commenterName, photo, text, createdAt, id:commentId, commentLikes } = curComment;
             const userComment = name === commenterName
             return (
               
@@ -56,12 +64,15 @@ export const Comment = ({ id, commentArray, commentOn, onClose }) => {
                   <div className="mt-1">
                     <p>{text}</p>
                   </div>
+                  <div className="flex gap-3 items-center">
+
                   {
-                    userComment && (<button onClick={() => handleDeleteClick(commentId)}>
+                    userComment && (<button onClick={() => handleDeleteClick(commentId)} className="cursor-pointer">
                     <MdDelete/>
                   </button>)
                   }
-                  <AiFillLike />
+                  <button onClick = {() => handleLikeComment(commentId)} className="flex items-center gap-1 cursor-pointer"><AiFillLike />{commentLikes.length}</button>
+                  </div>
                   
                 </li>
             );
