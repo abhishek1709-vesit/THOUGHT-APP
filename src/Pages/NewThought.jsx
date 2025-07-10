@@ -9,12 +9,14 @@ export const NewThought = () => {
     const { isAuth } = useGetLocalInfo();
   const navigate = useNavigate();
   
-  const {addThought} = useAddThought()
+  const {addThought, thoughtAdded} = useAddThought()
   const handleFormSubmit = (e) => {
     e.preventDefault()
     addThought({title, thought})
-    alert("Thought Added")
-    navigate("/feed")
+    if(thoughtAdded) {
+      alert("Thought Added")
+      navigate("/feed")
+    }
   }
 
   useEffect(() => {
