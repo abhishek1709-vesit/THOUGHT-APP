@@ -39,7 +39,7 @@ export const ThoughtCard = ({createdAt,name,photo,thought,title, id, likes, comm
         </div>
       </div>
       <div className="bg-gray-500 mt-3 rounded-2xl p-2">
-        <p className="text-style text-3xl md:text-5xl">{title}</p>
+        <p className="text-style text-3xl md:text-4xl">{title}</p>
         <p className="text-xl mt-3">{thought}</p>
       </div>
       <div className="mt-3 ml-3 flex gap-3 text-2xl">

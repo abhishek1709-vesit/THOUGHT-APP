@@ -10,6 +10,10 @@ export const useAddComment = () => {
         console.log(comment)
         console.log(id)
         console.log(commentArray)
+        if(comment === "") {
+            alert("Comment Cannot be empty")
+            return
+        }
         const thoughtRef = doc(db, "thoughts", id)
 
         const newComment = {

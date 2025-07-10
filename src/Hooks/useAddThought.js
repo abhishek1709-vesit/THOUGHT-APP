@@ -6,11 +6,15 @@ export const useAddThought = () => {
     const {userId, name, photo} = useGetLocalInfo()
     const thoughtCollectionRef = collection(db, "thoughts")
     const addThought = async ({title, thought}) => {
+        if(thought === ""){
+            alert("Thought cannot be empty")
+            return
+        } 
         addDoc(thoughtCollectionRef, {
             userId,
             name,
             photo,
-            title,
+            title: title || name,
             thought,
             createdAt: serverTimestamp(),
             likes: [],
