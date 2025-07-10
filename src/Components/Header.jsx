@@ -30,7 +30,7 @@ export const Navbar = () => {
     alert("Sign Out Successful")
   }
   return (
-    <div className="flex justify-around  items-center py-3.5 bg-[#111827] rounded-b-full rounded-t-full shadow-gray-400 ">
+    <div className="flex justify-around items-center py-3.5 bg-[#111827] rounded-b-full rounded-t-full shadow-gray-400 ">
       <div>
         <NavLink to={"/"} className="text-style text-4xl" ref={logoRef}>Thryve</NavLink>
       </div>
