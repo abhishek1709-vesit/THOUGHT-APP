@@ -6,10 +6,12 @@ export const useGetThoughts = () =>  {
     const [thoughtArray, setThoughtArray] = useState([])
     const thoughtCollectionRef = collection(db, "thoughts")
     const [userThoughts, setUserThoughts] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const getThoughts = async () => {
         let unsubscribe;
         try {
+            setLoading(true)
             const queryThoughts = query(thoughtCollectionRef, orderBy("createdAt"))
             unsubscribe = onSnapshot(queryThoughts, (snapshots) => {
                 // console.log(snapshots)
@@ -19,6 +21,7 @@ export const useGetThoughts = () =>  {
                     const id = doc.id;
                     docs.push({...data, id})
                     setThoughtArray(docs)
+                    setLoading(false)
                 })
             })
         } catch (error) {
@@ -29,6 +32,7 @@ export const useGetThoughts = () =>  {
     }
 
     const getUserThoughts = (userId) => {
+        setLoading(true)
         let user_unsub;
         try {
             const queryThoughts = query(thoughtCollectionRef, where("userId", "==", userId))
@@ -39,6 +43,7 @@ export const useGetThoughts = () =>  {
                     const id = doc.id
                     user_docs.push({...data, id})
                     setUserThoughts(user_docs)
+                    setLoading(false)
                 })
             })
         } catch (error) {
@@ -53,5 +58,5 @@ export const useGetThoughts = () =>  {
         // getUserThoughts()
     },[])
 
-    return {thoughtArray, getUserThoughts, userThoughts}
+    return {thoughtArray, loading, getUserThoughts, userThoughts}
 }

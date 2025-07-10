@@ -7,6 +7,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../Auth/firebase-config";
 import defaultImg from "../images/default-img.png";
+import { Loader } from "../Components/Loader";
 
 export const Profile = () => {
   const handleDelete = async (id) => {
@@ -23,11 +24,12 @@ export const Profile = () => {
   };
 
   
-  const { getUserThoughts, userThoughts } = useGetThoughts();
+  const { getUserThoughts, userThoughts, loading } = useGetThoughts();
   const { name, photo, userId } = useGetLocalInfo();
   useEffect(() => {
     getUserThoughts(userId);
   }, []);
+  if(loading) return <Loader/>
   return (
     <div className="flex flex-col items-center py-3">
       <div className="flex items-center gap-3">

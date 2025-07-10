@@ -4,14 +4,15 @@ import { ThoughtCard } from "../Components/ThoughtCard";
 import { useGetLocalInfo } from "../Hooks/useGetLocalInfo";
 import { useGetThoughts } from "../Hooks/useGetThoughts";
 import { useEffect } from "react";
+import { Loader } from "../Components/Loader";
 
 export const Feed = () => {
-  const { thoughtArray } = useGetThoughts();
+  const { thoughtArray, loading } = useGetThoughts();
   const { isAuth } = useGetLocalInfo();
   // console.log(thoughtArray)
-  if(!thoughtArray) return <p>Loading...</p>
-    return (
-      <div className="my-10 bg-gradient-to-r from-black via-gray-900 to-black">
+  if(loading) return <Loader />
+  return (
+    <div className="my-10 bg-gradient-to-r from-black via-gray-900 to-black">
         <div>
           <Stats />
         </div>
