@@ -35,7 +35,7 @@ export const Navbar = () => {
         <NavLink to={"/"} className="text-style text-4xl" ref={logoRef}>Thryve</NavLink>
       </div>
       <div className="flex items-center space-x-6 text-style">
-        <button onClick={() => setMenuToggle(!menuToggle)} className="inline-block md:hidden"><IoMenu /></button>
+        <button onClick={() => setMenuToggle(!menuToggle)} className="inline-block md:hidden"><IoMenu className="text-xl" /></button>
         <NavLink to="/feed" className={`${feedPage? "text-[#a1a1aa] text-style text-xl underline underline-offset-4 hidden md:inline-block" : "text-white text-style text-xl hidden md:inline-block"}`}>
           Feed
         </NavLink>
@@ -55,7 +55,7 @@ export const Navbar = () => {
         <div>
           
           <button onClick={handleLogOut} className={`${isAuth ? "inline" : "hidden"} border-t-2 border-b-[1px] border-x-[0.5px] px-5 rounded-full `}>
-            <NavLink to={"/login"} className="flex justify-center items-center py-1 gap-x-3 hover:scale-110"><CiLogout className="text-white "/> Log Out</NavLink>
+            <NavLink to={"/"} className="flex justify-center items-center py-1 gap-x-3 hover:scale-110"><CiLogout className="text-white "/> Log Out</NavLink>
           </button>
         </div>
       </div>

@@ -45,9 +45,9 @@ const App = () => {
       element: <LogIn/>
     },
     {
-          path: "/signUp",
-          element: <SignUp/>
-        },
+      path: "/signUp",
+      element: <SignUp/>
+    },
   ])
   return (
     <div>
