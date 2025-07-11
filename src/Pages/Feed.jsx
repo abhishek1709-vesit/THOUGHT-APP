@@ -13,12 +13,12 @@ export const Feed = () => {
   // console.log(thoughtArray)
   if(loading) return <Loader />
   return (
-    <div className="my-10 bg-gradient-to-r from-black via-gray-900 to-black">
+    <div className="flex flex-col items-center my-10 bg-gradient-to-r from-black via-gray-900 to-black">
         <div>
-          <Stats />
+          <Stats/>
         </div>
         <div>
-          <button className="fixed top-30 right-2 md:right-10 p-2 "><NavLink to={'/new-thought'} className="flex items-center"><FaEdit className="font-bold text-4xl "/><span className="hidden md:inline">Add Your Thought</span></NavLink></button>
+          <button className="mt-5 sm:mt-10"><NavLink to={'/new-thought'} className="flex items-center mt-5"><FaEdit className="text-4xl "/><span className="hidden md:inline">Add Your Thought</span></NavLink></button>
         </div>
         <ul className="flex items-center justify-center flex-col gap-10 mt-10 ">
           {thoughtArray.map((curThought) => {

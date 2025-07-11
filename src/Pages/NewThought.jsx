@@ -13,17 +13,19 @@ export const NewThought = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault()
     addThought({title, thought})
-    if(thoughtAdded) {
+  }
+  useEffect(() => {
+    if(thoughtAdded){
       alert("Thought Added")
       navigate("/feed")
     }
-  }
+  }, [thoughtAdded])
 
   useEffect(() => {
       if(!isAuth){
         navigate("/signUp")
       }
-    }, [isAuth])
+    }, [isAuth, navigate])
   return (
     <div className="flex justify-center my-10">
       <form onSubmit={handleFormSubmit} className="flex items-center flex-col gap-5 w-[80vw] md:w-[30vw] border-t-2 border-x-[1px] border-b-[1px] rounded-2xl border-slate-600 p-4">

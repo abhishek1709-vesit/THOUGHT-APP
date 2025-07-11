@@ -15,7 +15,7 @@ export const Profile = () => {
     if (!confirmation) return;
 
     try {
-      console.log(id);
+      // console.log(id);
       await deleteDoc(doc(db, "thoughts", id));
       alert("Deleted Successfully");
     } catch (error) {

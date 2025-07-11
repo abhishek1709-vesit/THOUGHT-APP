@@ -24,7 +24,7 @@ export const useAddThought = () => {
             likes: [],
             comments: [],
         })
-        setThoughtAdded(!thoughtAdded)
+        setThoughtAdded(true)
     }
     return {addThought, thoughtAdded}
 }

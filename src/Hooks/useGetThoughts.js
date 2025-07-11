@@ -6,7 +6,7 @@ export const useGetThoughts = () =>  {
     const [thoughtArray, setThoughtArray] = useState([])
     const thoughtCollectionRef = collection(db, "thoughts")
     const [userThoughts, setUserThoughts] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const getThoughts = async () => {
         let unsubscribe;
@@ -20,9 +20,9 @@ export const useGetThoughts = () =>  {
                     const data = doc.data()
                     const id = doc.id;
                     docs.push({...data, id})
-                    setThoughtArray(docs)
-                    setLoading(false)
                 })
+                setThoughtArray(docs)
+                setLoading(false)
             })
         } catch (error) {
             console.log(error)
