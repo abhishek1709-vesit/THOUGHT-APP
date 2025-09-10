@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, RecaptchaVerifier, signInWithPhoneNumber, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { auth, provider } from "../Auth/firebase-config";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("+91")
 
   const navigate = useNavigate();
   const {signUp} = useSignUp()
@@ -29,6 +30,22 @@ export const SignUp = () => {
     console.log("Authenticated");
     navigate("/");
   };
+
+  const handlePhoneLogIn = () => {
+
+  }
+
+  const sendOtp = async () => {
+    console.log(phoneNumber)
+    alert("Button clicked")
+    try {
+      const recaptcha = new RecaptchaVerifier(auth,"recaptcha",{})
+      const confirmation = await signInWithPhoneNumber(auth,phoneNumber,recaptcha)
+      console.log(confirmation)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div class="max-w-[280px] mx-auto">
         <div class="flex flex-col items-center mt-[10vh]">
@@ -47,6 +64,14 @@ export const SignUp = () => {
             <p class="text-center mt-3 text-[14px]">Already have an account? 
                 <NavLink to={'/login'} class="text-gray-600 underline"> Log In</NavLink>
             </p>
+            <div>
+              <form onSubmit={handlePhoneLogIn}>
+
+              </form>
+              <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className="bg-white h-10 w-50 mt-7 pl-2 text-black" placeholder="Enter phone number"/>
+              <button onClick={phoneNumber ? sendOtp : alert("Enter phone number")}>Send Otp</button>
+              <div id="recaptcha"></div>
+            </div>
             
         </div>
     </div>
